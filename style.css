@@ -1,0 +1,623 @@
+/* importing google font  */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Pushster&display=swap');
+
+/* 
+font-family: 'Merriweather Sans', sans-serif;
+font-family: 'Pushster', cursive;
+*/
+
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+:root{
+  --darkblue: #3a3550;
+  --grey: #979797;
+  --white: #fff;
+  --violet: #ffa4ff;
+}
+
+body{
+  font-family: 'Merriweather Sans', sans-serif;
+  background: #f6f6ff;
+}
+
+.how_to_use,
+.introduction{
+  color: #322d3a;
+}
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to top left, #3a3550, #2c2649);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 500;
+}
+
+nav .logo{
+  font-size: 30px;
+  color: var(--white);
+  margin-left: 50px;
+}
+
+nav .logo span{
+  color: var(--violet);
+}
+
+nav .navLink{
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(to left, #3a3550, #2a2444);
+  height: 100vh;
+  width: 0;
+  transition: all cubic-bezier(.79,.14,.15,.86) 0.4s;
+  z-index: 500;
+}
+
+nav .navLink.navActive{
+  width: 300px;
+}
+
+nav .navLink ul{
+  margin: 0 20px;
+}
+
+nav .navLink ul li{
+  border-bottom: 1px solid #3a3550;
+  display: flex;
+  flex-direction: row;
+}
+
+nav .navLink ul li:nth-child(1){
+  margin-top: 70px;
+}
+
+nav .navLink ul li:hover{
+  background: #3a3550;
+}
+
+nav .navLink ul li .fas,
+nav .navLink ul li .fab,
+nav .navLink ul li .far{
+  color: var(--violet);
+  font-size: 20px;
+}
+
+nav .navLink ul li a{
+  width: 100%;
+  position: absolute;
+  font-size: 18px;
+  color: var(--white);
+  margin: 0 40px;
+  white-space: nowrap;
+}
+
+nav .navLink ul li .fas,
+nav .navLink ul li .fab,
+nav .navLink ul li .far,
+nav .navLink ul li a{
+  padding: 12px 0;
+}
+
+/* menu button animation styling */
+.menuBtn{
+  position: absolute;
+  right: 50px;
+	display: inline-block;
+	cursor: pointer;
+	padding: 5px;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	align-items: center;
+  z-index: 500;
+}
+
+.menuBtn .bar1,
+.menuBtn .bar2,
+.menuBtn .bar3{
+	position: absolute;
+	width: 35px;
+	height: 3px;
+	background-color: var(--white);
+	transition: 0.4s;
+	border-radius: 5px;
+}
+
+.menuBtn .bar1{
+	top: 9px;
+}
+
+.menuBtn .bar3{
+	bottom: 9px;
+}
+
+.change .bar1{
+	transform: rotate(45deg);
+	width: 15px;
+	top: 15px;
+  left: 25px;
+  background: var(--violet);
+}
+
+.change .bar2{
+	transform: rotate(180deg);
+  background: var(--violet);
+}
+
+.change .bar3{
+	transform: rotate(-45deg);
+	width: 15px;
+	bottom: 15px;
+  left: 25px;
+  background: var(--violet);
+}
+
+/* section box styling */
+.section_box{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+  padding: 120px 0;
+}
+
+.section_box.hide{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section_box header{
+  text-align: center;
+  color: #28173fe1;
+  font-family: 'Pushster', cursive;
+}
+
+.section_box .col_container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.section_box .col_container .col{
+  width: 200px;
+  height: 120px;
+  background: linear-gradient(to left bottom, var(--grey), var(--darkblue), var(--darkblue));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.section_box .col_container .col .fas,
+.section_box .col_container .col .fab{
+  font-size: 30px;
+  color: whitesmoke;
+}
+
+.section_box .col_container .col p{
+  font-size: 20px;
+  color: #fff;
+}
+
+/*Grant Access styling */
+.access_overlay{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #3a3550ea;
+  z-index: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: all cubic-bezier(0, 0.14, 0.14, 0.84) 0.8s;
+}
+
+.access_overlay.active{
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.access{
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 100px;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 2px 2px 12px rgb(0,0,0,0.3);
+  z-index: 600;
+}
+
+.access_cancel{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to top right, var(--darkblue), var(--darkblue), var(--grey));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.access .input_field{
+  position: relative;
+  top: -50px;
+  width: 100%;
+  height: 40px;
+}
+
+.access .input_field input{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid var(--grey);
+}
+
+.access .status{
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  user-select: none;
+}
+
+.access .status.success{
+  background: #90ee90;
+  transition: all ease-in-out 0.3s;
+}
+
+.access .status.error{
+  background: #ff00008a;
+  color: #fff;
+  transition: all ease-in-out 0.3s;
+}
+
+.access #AccessBtn{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  padding: 12px 20px;
+  background: linear-gradient(to top right, var(--darkblue), var(--darkblue), var(--grey));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+/* App sections styling  */
+.app_sections{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #f6f6ff;
+  border-top: 1px solid lightgrey;
+  z-index: 100;
+}
+
+.app_sections .col{
+  height: 70px;
+  width: 70px;
+  background: linear-gradient(to left bottom, #3a35502f, #9797972f);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.app_sections .col:nth-child(2){
+  margin: 0 120px;
+}
+
+.app_sections .col .fas{
+  font-size: 30px;
+  color: var(--darkblue);
+}
+
+/* introduction and how_to_use section styling */
+.how_to_use,
+.introduction{
+  width: 90%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0 150px 0;
+  display: none;
+}
+
+.introduction.active{
+  display: flex;
+}
+
+.how_to_use.active{
+  display: flex;
+}
+
+.how_to_use h1,
+.introduction h1{
+  font-size: 50px;
+  margin: 12px 0 30px 0;
+}
+
+.introduction img{
+  width: 50%;
+}
+
+.how_to_use p,
+.introduction p{
+  font-size: 20px;
+  text-align: justify;
+}
+
+.back{
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  top: 100px;
+  left: 50px;
+  font-size: 25px;
+  color: var(--white);
+  background: linear-gradient(to left bottom, #3a3550, #979797);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.back.active{
+  opacity: 1;
+  pointer-events: visible;
+}
+
+/* html videos styling */
+.html_vid{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 170px 15% 120px 15%;
+  display: none;
+}
+
+.html_vid.active{
+  display: grid;
+}
+
+.html_vid .heading{
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  color: #444;
+  font-size: 30px;
+  padding: 10px;
+}
+
+.html_vid .active_video{
+  background: #3a3550;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.html_vid .active_video video{
+  width: 100%;
+  border-radius: 5px;
+}
+
+.html_vid .active_video .title{
+  color: #fff;
+  font-size: 23px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.html_vid .video-list{
+  background: #3a3550;
+  border-radius: 5px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.html_vid .video-list::-webkit-scrollbar{
+  width: 7px;
+}
+
+.html_vid .video-list::-webkit-scrollbar-track{
+  background: #ccc;
+  border-radius: 50px;
+}
+
+.html_vid .video-list::-webkit-scrollbar-thumb{
+  background: #888;
+  border-radius: 50px;
+}
+
+.html_vid .video-list .vid video{
+  width: 100px;
+  border-radius: 5px;
+}
+
+.html_vid .video-list .vid{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f7f7f7;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0, .1);
+  cursor: pointer;
+}
+
+.html_vid .video-list .vid:hover{
+  background: #eee;
+}
+
+.html_vid .video-list .vid.active{
+  background: #3a3550;
+  border: 2px solid #eee;
+}
+
+.html_vid .video-list .vid.active .title{
+  color: #fff;
+}
+
+.html_vid .video-list .vid .title{
+  color: #333;
+  font-size: 15px;
+}
+
+/* resnonsive  */
+@media (max-width: 1000px) {
+  .html_vid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 803px) {
+  .section_box .col_container .col{
+    width: 170px;
+    height: 90px;
+    margin: 7px;
+  }
+}
+
+@media only screen and (max-width: 613px) {
+  .app_sections .col{
+    height: 50px;
+    width: 50px;
+  }
+  .app_sections .col:nth-child(2){
+    margin: 0 70px;
+  }
+
+  .app_sections .col .fas{
+    font-size: 20px;
+  }
+  .how_to_use h1,
+  .introduction h1{
+    font-size: 30px;
+  }
+  .introduction img{
+    width: 80%;
+  }
+}
+
+@media (max-width: 490px) {
+  .html_vid{
+    padding: 170px 2% 120px 2%;
+
+  }
+
+  .html_vid .heading{
+    font-size: 20px;
+  }
+
+  .html_vid .active_video .title{
+    font-size: 17px;
+  }
+  .html_vid .video-list .vid .title{
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 408px) {
+  .section_box .col_container .col{
+    width: 100%;
+    margin: 10px;
+  }
+
+  nav .logo{
+    margin-left: 20px;
+  }
+  .menuBtn{
+    right: 20px;
+  }
+
+  .back{
+    height: 40px;
+    width: 40px;
+    left: 20px;
+    font-size: 19px;
+  }
+
+  .section_box{
+    padding: 100px 0;
+  }
+
+  .access{
+    width: 100px;
+  }
+
+  .access .input_field ::placeholder{
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .how_to_use img{
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .app_sections .col{
+    height: 35px;
+    width: 35px;
+  }
+  .app_sections .col:nth-child(2){
+    margin: 0 40px;
+  }
+
+  .app_sections .col .fas{
+    font-size: 17px;
+  }
+
+  nav .logo{
+    font-size: 22px;
+  }
+}
